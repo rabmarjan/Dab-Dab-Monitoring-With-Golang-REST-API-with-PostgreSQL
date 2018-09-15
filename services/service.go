@@ -5,7 +5,7 @@ import (
 	"workspace/goweb/models"
 )
 
-// queryRepos first fetches the repositories data from the db
+// QueryRepos first fetches the repositories data from the db
 func QueryRepos(repos *models.Assets) error {
 	db, err := db.DbConnection()
 	defer db.Close()

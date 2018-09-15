@@ -19,7 +19,7 @@ func GetMeTheBaby(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "The %s is and name of book %s", title, book)
 }
 
-// indexHandler calls `queryRepos()` and marshals the result as JSON
+// AssetHandler calls `QueryRepos()` and marshals the result as JSON
 func AssetHandler(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//w.WriteHeader(http.StatusOK)

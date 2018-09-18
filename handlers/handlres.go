@@ -30,12 +30,13 @@ func AssetHandler(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, err.Error(), 500)
 		return
 	}
+	json.NewEncoder(w).Encode(assets)
 
-	out, err := json.Marshal(assets)
-	if err != nil {
-		http.Error(w, err.Error(), 500)
-		return
-	}
+// 	out, err := json.Marshal(assets)
+// 	if err != nil {
+// 		http.Error(w, err.Error(), 500)
+// 		return
+// 	}
 
-	fmt.Fprintf(w, string(out))
+// 	fmt.Fprintf(w, string(out))
 }

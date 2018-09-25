@@ -24,6 +24,6 @@ func DbConnection() (*sql.DB, error) {
 
 func CheckErr(err error) {
 	if err != nil {
-		return err
+		panic(err)
 	}
 }

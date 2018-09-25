@@ -3,14 +3,19 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
-	"log"
+
+	//"log"
 	"net/http"
 	"workspace/goweb/models"
 	"workspace/goweb/services"
+	"workspace/goweb/utils"
+
+	log "github.com/sirupsen/logrus"
 
 	"github.com/gorilla/mux"
 )
 
+// GetMeTheBaby calls and marshals the result as JSON
 func GetMeTheBaby(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	title := vars["title"]
@@ -19,10 +24,15 @@ func GetMeTheBaby(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "The %s is and name of book %s", title, book)
 }
 
-// AssetHandler calls `QueryRepos()` and marshals the result as JSON
+// AssetHandler calls `queryRepos()` and marshals the result as JSON
 func AssetHandler(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	//w.Header().Set("Access-Control-Allow-Origin", "192.168.5.156")
 	//w.WriteHeader(http.StatusOK)
+	utils.SetupResponse(&w, req)
+	// if (*req).Method == "OPTIONS" {
+	// 	return
+	// }
 
 	assets := models.Assets{}
 	err := services.QueryRepos(&assets)
@@ -31,12 +41,12 @@ func AssetHandler(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	json.NewEncoder(w).Encode(assets)
+	// out, err := json.Marshal(assets)
+	// if err != nil {
+	// 	http.Error(w, err.Error(), 500)
+	// 	return
+	// }
 
-// 	out, err := json.Marshal(assets)
-// 	if err != nil {
-// 		http.Error(w, err.Error(), 500)
-// 		return
-// 	}
+	// fmt.Fprintf(w, string(out))
 
-// 	fmt.Fprintf(w, string(out))
 }

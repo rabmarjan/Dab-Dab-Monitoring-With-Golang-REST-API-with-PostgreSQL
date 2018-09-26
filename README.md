@@ -1,5 +1,5 @@
-# Monitoring-System-With-Golang-REST-API-with-PostgreSQL
-A Go based REST API with PostgreSQL Database
+# Monitoring-System-With-Golang-REST-API-with-PostgreSQL&SQLite Database
+A Go based REST API with PostgreSQL and SQLite Database
 
 ## How to Run the Project on Your Local Machine
 1. Create a database (Run the below command)

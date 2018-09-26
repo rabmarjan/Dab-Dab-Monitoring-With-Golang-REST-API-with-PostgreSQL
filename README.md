@@ -61,9 +61,13 @@ export GOPATH=$HOME/go
 export GOROOT=/usr/lib/go-1.10
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 ```
-3. Put the project in src directory
+3. Put the project in src directory and rename project `goweb`
 ```bash
 cd $HOME/go/src
+mkdir workspace
+## put the goweb with all source code into workspace directory so directory will look like following
+$HOME/go/src/workspace/goweb
+## All source file should inside of the goweb directory
 ```
 4. Run the below command (It will install all project dependency)
 ```bash

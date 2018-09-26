@@ -83,7 +83,7 @@ localhost:9010/lumos/
 2. asset/asset/v1/save
 3. asset/asset/v1/update
 
-### Concatenate base url uith end point so it look like below url
+### Concatenate base url with api end point so it look like below url
 localhost:9010/lumos/asset/asset/v1/get-list
 
 ### For running service run below command where main.go file located

@@ -61,7 +61,7 @@ export GOPATH=$HOME/go
 export GOROOT=/usr/lib/go-1.10
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 ```
-3. Put the project in src directory and rename project `goweb`
+3. Put the project in src directory and rename project `Monitoring-System-With-Golang-REST-API-with-PostgreSQL-and-SQLite` to `goweb`
 ```bash
 cd $HOME/go/src
 mkdir workspace

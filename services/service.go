@@ -203,23 +203,6 @@ func QueryReposUpdate(w http.ResponseWriter, r *http.Request) {
 }
 
 func QuerySaveSQLite(w http.ResponseWriter, r *http.Request) {
-	// stmt, err := conSQLite.Prepare("INSERT INTO userinfo(username, departname, created) values(?,?,?)")
-	// checkErr(err)
-
-	// res, err := stmt.Exec("astaxie", "研发部门", "2012-12-09")
-	// checkErr(err)
-
-	// id, err := res.LastInsertId()
-	// checkErr(err)
-
-	// fmt.Println(id)
-
-	///////////////////
-	// defer db.Close()
-	// if err != nil {
-	// 	http.Error(w, err.Error(), 500)
-	// 	return
-	// }
 	var asset models.Asset
 	var LastInsertId string
 	log.Println(r.Body)
@@ -229,13 +212,6 @@ func QuerySaveSQLite(w http.ResponseWriter, r *http.Request) {
 	}
 	r.Body = ioutil.NopCloser(bytes.NewBuffer(body)) // TODO.....
 	log.Println("Request body", r.Body)              // TODO.....
-	// log.Println(string(body))
-	// var t models.Asset
-	// err = json.Unmarshal(body, &t)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// log.Println(t.Oid)
 	obj := map[string]interface{}{}
 	if err := json.Unmarshal([]byte(body), &obj); err != nil {
 		log.Fatal(err)

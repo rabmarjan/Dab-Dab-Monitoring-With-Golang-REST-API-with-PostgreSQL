@@ -94,4 +94,35 @@ go run main.go
 curl -i -X POST -H "Content-Type: application/json" -d '{"header":{"requestId":"f130d221-4ae6-4d09-bf2e-75d4f194a469","requestType":"asset/asset/v1/get-list","requestClient":"lumos","requestSource":"curl","requestSourceService":"terminal","requestVersion":"1.0","requestTimeoutInSeconds":30,"requestRetryCount":0,"hopCount":1,"traceId":"171206IPLI","requestTime":"2018-09-11T08:20:39.778Z"},"meta":{},"body":{"searchParam":{"offSet":0,"limit":10}}}' http://localhost:9010/lumos/asset/asset/v1/get-list
 
 ## How to Run the Project on Your Local Machine with SQLite
-curl -i -X POST -H "Content-Type: application/json" -d '{"header":{"requestId":"f130d221-4ae6-4d09-bf2e-75d4f194a469","requestType":"asset/asset/sqlite/v1/save","requestClient":"lumos","requestSource":"curl","requestSourceService":"terminal","requestVersion":"1.0","requestTimeoutInSeconds":30,"requestRetryCount":0,"hopCount":1,"traceId":"171206IPLI","requestTime":"2018-09-11T08:20:39.778Z"},"meta":{},"body":{"searchParam":{"offSet":0,"limit":10}}}' http://localhost:9010/lumos/asset/asset/sqlite/v1/save
+
+```sql
+CREATE TABLE asset
+(
+  oid character varying(128) NOT NULL,
+  organizationoid character varying(128) NOT NULL,
+  customeroid character varying(128) NOT NULL,
+  siteoid character varying(128) NOT NULL,
+  categoryoid character varying(128) NOT NULL,
+  manufactureroid character varying(128) NOT NULL,
+  modeloid character varying(128) NOT NULL,
+  assetname character varying(256) NOT NULL,
+  productserial character varying(256) NOT NULL,
+  assetid character varying(256),
+  purchasedate date,
+  shipmentdate date,
+  deliverydate date,
+  eoldate date,
+  eosdate date,
+  specificationjson text DEFAULT '{}',
+  configurationjson text  DEFAULT '{}',
+  credentialjson text   DEFAULT '{}',
+  datajson text DEFAULT '{}',
+  createdby character varying(128) DEFAULT '',
+  createdon timestamp without time zone,
+  updatedby character varying(128) DEFAULT '',
+  updatedon timestamp without time zone,
+  CONSTRAINT pk_asset PRIMARY KEY (oid)
+);
+
+```
+curl -i -X POST -H "Content-Type: application/json" -d '{"header":{"requestId":"f130d221-4ae6-4d09-bf2e-75d4f194a469","requestType":"asset/asset/sqlite/v1/get-list","requestClient":"lumos","requestSource":"curl","requestSourceService":"terminal","requestVersion":"1.0","requestTimeoutInSeconds":30,"requestRetryCount":0,"hopCount":1,"traceId":"171206IPLI","requestTime":"2018-09-11T08:20:39.778Z"},"meta":{},"body":{"searchParam":{"offSet":0,"limit":10}}}' http://localhost:9010/lumos/asset/asset/sqlite/v1/get-list

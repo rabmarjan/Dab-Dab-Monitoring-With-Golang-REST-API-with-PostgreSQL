@@ -15,5 +15,6 @@ func GetRoute() *mux.Router {
 	router.HandleFunc("/asset/asset/v1/save", utils.Chain(services.QueryReposSave, utils.Method("POST"), utils.Logging())).Methods("POST")
 	router.HandleFunc("/asset/asset/v1/get-list", utils.Chain(handlers.AssetHandler, utils.Method("POST"), utils.Logging())).Methods("POST")
 	router.HandleFunc("/asset/asset/v1/update", utils.Chain(services.QueryReposUpdate, utils.Method("POST"), utils.Logging())).Methods("POST")
+	router.HandleFunc("/asset/asset/sqlite/v1/save", utils.Chain(services.QuerySaveSQLite, utils.Method("POST"), utils.Logging())).Methods("POST")
 	return r
 }

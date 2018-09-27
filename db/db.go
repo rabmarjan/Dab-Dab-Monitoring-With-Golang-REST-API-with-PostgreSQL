@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	_ "github.com/lib/pq"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 const (
@@ -20,6 +21,12 @@ func DbConnection() (*sql.DB, error) {
 	CheckErr(err)
 	//defer db.Close()
 	return db, err
+}
+
+func SQLiteConn() (*sql.DB, error) {
+	sqlitedb, err := sql.Open("sqlite3", "./lumoswg.db")
+	checkErr(err)
+	return sqlitedb, err
 }
 
 func CheckErr(err error) {

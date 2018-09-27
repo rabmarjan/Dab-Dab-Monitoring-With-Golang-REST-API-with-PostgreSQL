@@ -50,3 +50,16 @@ func AssetHandler(w http.ResponseWriter, req *http.Request) {
 	// fmt.Fprintf(w, string(out))
 
 }
+
+// AssetHandlerSQLite calls `queryRepos()` and marshals the result as JSON
+func AssetHandlerSQLite(w http.ResponseWriter, req *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	utils.SetupResponse(&w, req)
+	assets := models.Assets{}
+	err := services.QueryReposSQLite(&assets)
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		return
+	}
+	json.NewEncoder(w).Encode(assets)
+}

@@ -203,6 +203,8 @@ func QueryReposUpdate(w http.ResponseWriter, r *http.Request) {
 }
 
 func QuerySaveSQLite(w http.ResponseWriter, r *http.Request) {
+	db, err := db.SQLiteConn()
+	defer db.Close()
 	var asset models.Asset
 	var LastInsertId string
 	log.Println(r.Body)
@@ -230,7 +232,6 @@ func QuerySaveSQLite(w http.ResponseWriter, r *http.Request) {
 
 	json.NewDecoder(r.Body).Decode(&asset)
 	log.Println("Encoded Asset", &asset)
-	db, err := db.SQLiteConn()
 	stmt, err := db.Prepare(`insert into asset (
 		oid, organizationOid, customerOid, siteOid,
 		categoryOid, manufacturerOid,modelOid, assetName,
@@ -253,4 +254,68 @@ func QuerySaveSQLite(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(asset)
 	log.Println("After JSON")
 
+}
+
+//QueryReposSQLite get data from SQLite db
+func QueryReposSQLite(repos *models.Assets) error {
+	db, err := db.SQLiteConn()
+	defer db.Close()
+	rows, err := db.Query(`
+		SELECT
+		Oid,              
+		OrganizationOid,  
+		CustomerOid,      
+		SiteOid,          
+		CategoryOid,      
+		ManufacturerOid,  
+		ModelOid,         
+		AssetName,        
+		ProductSerial,    
+		AssetID,          
+		PurchaseDate,     
+		ShipmentDate,     
+		DeliveryDate,     
+		EolDate,          
+		EosDate,          
+		SpecificationJSON,
+		ConfigurationJSON,
+		CredentialJSON       
+		FROM asset`)
+	if err != nil {
+		return err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		asset := models.Asset{}
+		err = rows.Scan(
+			&asset.Oid,
+			&asset.OrganizationOid,
+			&asset.CustomerOid,
+			&asset.SiteOid,
+			&asset.CategoryOid,
+			&asset.ManufacturerOid,
+			&asset.ModelOid,
+			&asset.AssetName,
+			&asset.ProductSerial,
+			&asset.AssetID,
+			&asset.PurchaseDate,
+			&asset.ShipmentDate,
+			&asset.DeliveryDate,
+			&asset.EolDate,
+			&asset.EosDate,
+			&asset.SpecificationJSON,
+			&asset.ConfigurationJSON,
+			&asset.CredentialJSON,
+		)
+		if err != nil {
+			return err
+		}
+		repos.AllAssets = append(repos.AllAssets, asset)
+	}
+	log.Info("Get All List from Asset Table")
+	err = rows.Err()
+	if err != nil {
+		return err
+	}
+	return nil
 }

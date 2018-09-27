@@ -94,4 +94,4 @@ go run main.go
 curl -i -X POST -H "Content-Type: application/json" -d '{"header":{"requestId":"f130d221-4ae6-4d09-bf2e-75d4f194a469","requestType":"asset/asset/v1/get-list","requestClient":"lumos","requestSource":"curl","requestSourceService":"terminal","requestVersion":"1.0","requestTimeoutInSeconds":30,"requestRetryCount":0,"hopCount":1,"traceId":"171206IPLI","requestTime":"2018-09-11T08:20:39.778Z"},"meta":{},"body":{"searchParam":{"offSet":0,"limit":10}}}' http://localhost:9010/lumos/asset/asset/v1/get-list
 
 ## How to Run the Project on Your Local Machine with SQLite
-### TODO...
+curl -i -X POST -H "Content-Type: application/json" -d '{"header":{"requestId":"f130d221-4ae6-4d09-bf2e-75d4f194a469","requestType":"asset/asset/sqlite/v1/save","requestClient":"lumos","requestSource":"curl","requestSourceService":"terminal","requestVersion":"1.0","requestTimeoutInSeconds":30,"requestRetryCount":0,"hopCount":1,"traceId":"171206IPLI","requestTime":"2018-09-11T08:20:39.778Z"},"meta":{},"body":{"searchParam":{"offSet":0,"limit":10}}}' http://localhost:9010/lumos/asset/asset/sqlite/v1/save

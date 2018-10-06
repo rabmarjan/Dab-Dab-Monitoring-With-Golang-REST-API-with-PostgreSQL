@@ -1,5 +1,4 @@
 -- Table: public.asset
-
 -- DROP TABLE public.asset;
 
 CREATE TABLE public.asset

@@ -123,6 +123,12 @@ CREATE TABLE asset
   updatedon timestamp without time zone,
   CONSTRAINT pk_asset PRIMARY KEY (oid)
 );
-
 ```
+### Get all asset from service
+#### For insert
+curl -i -X POST -H "Content-Type: application/json" -d '{"header":{"requestId":"f9f3dc67-e830-41b2-a45d-43cc3e3bb742","requestType":"asset/asset/sqlite/v1/save","requestClient":"lumos","requestSource":"curl","requestSourceService":"terminal","requestVersion":"1.0","requestTimeoutInSeconds":30,"requestRetryCount":0,"hopCount":1,"traceId":"171206IPLI","requestTime":"2018-09-11T09:05:38.199Z"},"meta":{},"body":{"oid":"120marjan27","organizationOid":"ORG-01","customerOid":"Cust-01","siteOid":"Site-01","categoryOid":"cat-01",
+"manufacturerOid":"OEM-01","modelOid":"AM-01","assetName":"1234asdf","productSerial":"123456789",
+"assetID":"1234","purchaseDate":"2018-07-31T10:51:00.603Z"}}' http://localhost:9010/lumos/asset/asset/sqlite/v1/save
+
+#### For get all asset
 curl -i -X POST -H "Content-Type: application/json" -d '{"header":{"requestId":"f130d221-4ae6-4d09-bf2e-75d4f194a469","requestType":"asset/asset/sqlite/v1/get-list","requestClient":"lumos","requestSource":"curl","requestSourceService":"terminal","requestVersion":"1.0","requestTimeoutInSeconds":30,"requestRetryCount":0,"hopCount":1,"traceId":"171206IPLI","requestTime":"2018-09-11T08:20:39.778Z"},"meta":{},"body":{"searchParam":{"offSet":0,"limit":10}}}' http://localhost:9010/lumos/asset/asset/sqlite/v1/get-list

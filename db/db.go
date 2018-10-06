@@ -12,11 +12,12 @@ const (
 	DB_USER     = "postgres"
 	DB_PASSWORD = "postgres"
 	DB_NAME     = "lumoswg"
+	HOST        = "192.168.5.168"
 )
 
 func DbConnection() (*sql.DB, error) {
-	dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable",
-		DB_USER, DB_PASSWORD, DB_NAME)
+	dbinfo := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable",
+		HOST, DB_USER, DB_PASSWORD, DB_NAME)
 	db, err := sql.Open("postgres", dbinfo)
 	CheckErr(err)
 	//defer db.Close()
